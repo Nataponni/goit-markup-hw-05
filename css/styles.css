@@ -481,7 +481,7 @@ img {
   flex-shrink: 0;
   border-radius: 4px;
   border: 1px solid #fff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   background-color: transparent;
   font-size: 12px;
   line-height: 1.5;
@@ -558,12 +558,15 @@ font-weight: 400;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 408px;
-  height: 584px;
+  min-height: 584px;
   border-radius: 4px;
   background: #fcfcfc;
   padding-top: 72px;
   padding-left: 24px;
   padding-right: 24px;
+  padding-bottom: 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-close-btn {
   position: absolute;
@@ -572,26 +575,27 @@ font-weight: 400;
   width: 24px;
   height: 24px;
   display: flex;
-  border-radius: 4px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   padding: 0;
   border-radius: 50%;
   background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   stroke-width: 1px;
-  border-color: rgba(0, 0, 0, 0.1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-close-btn:hover,
 .modal-close-btn:focus {
-  fill: #fff;
+  border: none;
   background-color: #404bbf;
+  fill:#fff;
 }
 .modal-list {
   display: flex;
-  color: #2e2f42;
+  color: hsl(237, 18%, 22%);
   justify-content: center;
+  text-align: center;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
@@ -602,7 +606,7 @@ font-weight: 400;
   margin-bottom: 8px;
 }
 .review-form-field-label {
-  display: flex;
+  display: block;
   align-items: center;
   color: #8e8f99;
   font-size: 12px;
@@ -612,16 +616,18 @@ font-weight: 400;
   margin-bottom: 4px;
 }
 .review-form-field-input {
-  outline: 0px;
+  outline: transparent;
   width: 100%;
   height: 40px;
   border-radius: 4px;
+  color: #fff;
   border: 1px solid rgba(46, 47, 66, 0.4);
   padding-left: 38px;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .review-form-field-input:focus {
-  border: 1px solid #4d5ae5;
+  border-color: #4d5ae5;
 }
 
 .review-form-field {
@@ -644,19 +650,26 @@ font-weight: 400;
   outline: 0;
   border-radius: 4px;
   border: 1px solid rgba(46, 47, 66, 0.4);
-  color: #02E2F42;
+  color: rgba(46, 47, 66, 0.4);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.17; /* 116.667% */
   letter-spacing: 0.04em;
-  padding: 8px 16px;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px 16px; 
+  background-color: transparent;
+  
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.review-comment {
+  margin-bottom: 24px;
+}
+
 .review-form-field-comment::placeholder {
-  color: rgba(46, 47, 66, 0.4);
+ 
+ color: rgba(46, 47, 66, 0.4);
 }
 .review-form-field-comment:focus {
-  border: 1px solid #4d5ae5;
+  border-color: #4d5ae5;
 }
 
 .review-form-field-own-checkbox {
@@ -667,22 +680,18 @@ font-weight: 400;
   width: 16px;
   height: 16px;
   border: 1px solid rgba(46, 47, 66, 0.4);
-  fill: #e7e9fc;
+  fill: transparent
   stroke: rgba(0, 0, 0, 0.1);
   outline: 0;
   border-radius: 2px;
   stroke-width: 1px;
   margin-right: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .review-form-field-checkbox:checked
   + .review-form-field-label
   > .review-form-field-own-checkbox {
   background-color: #404bbf;
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  top: 55px;
-  left: 20px;
   border: 1px solid #404bbf;
 }
 
@@ -696,6 +705,8 @@ font-weight: 400;
   fill: #fff;
   stroke: #fff;
   opacity: 0;
+  top: auto;
+  left: auto;
 }
 .review-form-field-checkbox:checked
   + .review-form-field-label
