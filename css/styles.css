@@ -714,10 +714,9 @@ img {
   left: auto;
 }
 .review-form-field-checkbox:checked
-  + .review-form-field-label
-  .review-form-field-own-checkbox-icon {
+  + .review-form-field-label .review-form-field-own-checkbox-icon {
   opacity: 1;
-  border: none;
+  border: transparent;
 }
 .review-checkbox {
   margin-bottom: 24px;
