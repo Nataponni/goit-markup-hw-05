@@ -648,6 +648,7 @@ img {
   fill: #4d5ae5;
 }
 .review-form-field-comment {
+  display: block;
   width: 100%;
   height: 120px;
   resize: none;
